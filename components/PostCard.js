@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Avatar, Button, Card, Popover } from 'antd';
+import { Avatar, Button, Card, Comment, List, Popover } from 'antd';
 import {
   EllipsisOutlined, HeartOutlined, HeartTwoTone,
   MessageOutlined, MessageTwoTone, RetweetOutlined
@@ -81,7 +81,25 @@ const PostCard = ({ post }) => {
         />
         <Button></Button>
       </Card>
-      {isCommentForm && <CommentForm />}
+      {isCommentForm &&
+        <div>
+          <CommentForm post={post} />
+          <List
+            header={`${post.comments.length}개의 댓글`}
+            itemLayout="horizontal"
+            dataSource={post.comments}
+            renderItem={item => (
+              <li>
+                <Comment
+                  author={item.user.nickname}
+                  avatar={<Avatar>{item.user.nickname[0]}</Avatar>}
+                  content={item.content}
+                />
+              </li>
+            )}
+          />
+        </div>
+      }
       {/* <CommentForm />
       <Comments /> */}
     </PostCardWrap>

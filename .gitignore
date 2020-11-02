@@ -5,6 +5,15 @@
 /.pnp
 .pnp.js
 
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# next.js build output
+.next
+
 # testing
 /coverage
 
